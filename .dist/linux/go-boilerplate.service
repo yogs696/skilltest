@@ -1,0 +1,29 @@
+# systemd service for managing all techtest service on this system.
+[Unit]
+Description=techtest System Service
+
+ConditionPathExists=/usr/sbin/techtest
+ConditionPathIsDirectory=/etc/techtest
+ConditionPathExists=/etc/rsyslog.d/syslog-techtest.conf
+ConditionPathIsDirectory=/var/log/techtest
+
+After=network.target postgresql.service redis-server.service
+Wants=network-online.target postgresql.service redis-server.service
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+
+WorkingDirectory=/etc/techtest
+ExecStart=/usr/sbin/techtest --run
+
+# Comment this option consider to this error "Standard output type syslog is obsolet"
+# StandardOutput=syslog
+# StandardError=syslog
+# SyslogIdentifier=techtest
+
+Environment=debug_option
+
+[Install]
+WantedBy=multi-user.target
