@@ -1,11 +1,11 @@
-# systemd service for managing all techtest service on this system.
+# systemd service for managing all skilltest service on this system.
 [Unit]
-Description=techtest System Service
+Description=skilltest System Service
 
-ConditionPathExists=/usr/sbin/techtest
-ConditionPathIsDirectory=/etc/techtest
-ConditionPathExists=/etc/rsyslog.d/syslog-techtest.conf
-ConditionPathIsDirectory=/var/log/techtest
+ConditionPathExists=/usr/sbin/skilltest
+ConditionPathIsDirectory=/etc/skilltest
+ConditionPathExists=/etc/rsyslog.d/syslog-skilltest.conf
+ConditionPathIsDirectory=/var/log/skilltest
 
 After=network.target postgresql.service redis-server.service
 Wants=network-online.target postgresql.service redis-server.service
@@ -15,13 +15,13 @@ Type=simple
 Restart=on-failure
 RestartSec=10
 
-WorkingDirectory=/etc/techtest
-ExecStart=/usr/sbin/techtest --run
+WorkingDirectory=/etc/skilltest
+ExecStart=/usr/sbin/skilltest --run
 
 # Comment this option consider to this error "Standard output type syslog is obsolet"
 # StandardOutput=syslog
 # StandardError=syslog
-# SyslogIdentifier=techtest
+# SyslogIdentifier=skilltest
 
 Environment=debug_option
 

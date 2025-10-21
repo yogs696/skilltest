@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/yogs696/skilltest/internal/entity"
-	"github.com/yogs696/skilltest/internal/helper"
 	"github.com/yogs696/skilltest/pkg/kemu"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -42,10 +41,9 @@ func (s *Service) CreateUser(username, email, password string) (*entity.User, er
 	}
 
 	a := &entity.User{
-		Username:     username,
-		Email:        email,
-		Password:     string(passwordHash),
-		CreatedAtStr: helper.DateStr(),
+		Username: username,
+		Email:    email,
+		Password: string(passwordHash),
 	}
 
 	defer func() {

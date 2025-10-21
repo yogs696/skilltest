@@ -18,5 +18,5 @@ type Repository interface {
 	) (int64, error)
 
 	Insert(a *entity.Schedule) error
-	Delete(ScheduleID uint) (row int64, err error)
+	Delete(scheduleID uint) (row int64, err error)
 }

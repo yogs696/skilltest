@@ -1,12 +1,11 @@
 <pre style="font-size: 1.4vw;">
 <p align="center">
-                _                         
- _             | |    _              _    
-| |_  ____ ____| | _ | |_  ____  ___| |_  
-|  _)/ _  ) ___) || \|  _)/ _  )/___)  _) 
-| |_( (/ ( (___| | | | |_( (/ /|___ | |__ 
- \___)____)____)_| |_|\___)____|___/ \___)
-                                          
+      _     _ _ _                        
+     | |   (_) | |   _              _    
+  ___| |  _ _| | |  | |_  ____  ___| |_  
+ /___) | / ) | | |  |  _)/ _  )/___)  _) 
+|___ | |< (| | | |  | |_( (/ /|___ | |__ 
+(___/|_| \_)_|_|_|   \___)____|___/ \___)
 </p>
 </pre>
 <p align="center">
@@ -18,10 +17,10 @@
 </a>
 </p>
 <p align="center">
-<b>Go - Techtest</b> is a test preparation </b>
+<b>Go - skilltest</b> is a test preparation </b>
 </p>
 
-# Techtest API Guide
+# skilltest API Guide
 
 ## 🔀 How to Run :
 
@@ -36,213 +35,236 @@
 
 ## 🔀 Compatible Route Endpoint
 
-| NO  | Use                 | Endpoint                   | Example                                      | Action |
-| --- | ------------------- | -------------------------- | -------------------------------------------- | ------ |
-| 1   | register            | api/v1/user/register       | http://localhost:4040/v1/user/register       | POST   |
-| 2   | Login               | api/v1/user/login          | http://localhost:4040/v1/user/login          | POST   |
-| 3   | list Product        | api/v1/product/list        | http://localhost:4040/v1/product/list        | GET    |
-| 3   | Create Product      | api/v1/product/create      | http://localhost:4040/v1/product/create      | POST   |
-| 4   | Update Product      | api/v1/product/update/{id} | http://localhost:4040/v1/product/update/{id} | PUT    |
-| 5   | Delete Product      | api/v1/product/delete/{id} | http://localhost:4040/v1/product/delete/{id} | DELETE |
-| 6   | create item to cart | api/v1/cart/create         | http://localhost:4040/v1/cart/create         | POST   |
-| 7   | create order        | api/v1/order/create        | http://localhost:4040/v1/order/create        | POST   |
+| NO  | Use             | Endpoint                    | Example                                       | Action |
+| --- | --------------- | --------------------------- | --------------------------------------------- | ------ |
+| 1   | register        | api/v1/auth/register        | http://localhost:4040/v1/auth/register        | POST   |
+| 2   | Login           | api/v1/auth/login           | http://localhost:4040/v1/auth/login           | POST   |
+| 3   | list Schedule   | api/v1/schedule/list        | http://localhost:4040/v1/schedule/list        | GET    |
+| 3   | Create Schedule | api/v1/schedule/create      | http://localhost:4040/v1/schedule/create      | POST   |
+| 4   | Update Schedule | api/v1/schedule/update/{id} | http://localhost:4040/v1/schedule/update/{id} | PUT    |
+| 5   | Delete Schedule | api/v1/schedule/delete/{id} | http://localhost:4040/v1/schedule/delete/{id} | DELETE |
 
 ---
 
-## 📖 Compatible JSON Payload Techtest API
+## 📖 Compatible JSON Payload skilltest API
 
-This is the JSON payload that's sended to Techtest API
+This is the JSON payload that's sended to skilltest API
 
-### 💸 List Product Datatable Request
+### 💸 Register Curl
 
 ```js
-curl --location --request GET 'localhost:4040/v1/product/list' \
+curl --location 'localhost:4040/v1/auth/register' \
 --header 'Content-Type: application/json' \
+--data-raw '{
+	"username": "testing",
+    "email": "test@gmail.com",
+    "password": "admin123"
+}'
+```
+
+### 💸 Register Response
+
+```js
+{
+    "success": true,
+    "code": 2400,
+    "data": {
+        "id": 1,
+        "name": "testing",
+        "email": "test@gmail.com",
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic2VjIjoiZDQxZDhjZDk4ZjAwYjIwNGU5ODAwOTk4ZWNmODQyN2UiLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InRlc3RpbmcifQ.vJNGpo8x2H-Qe16Xk6AFc9tron5vzN2RQfhIjM4Yps_LxlAzsnIbr-uCs0m0G67LgQcHCXcdM9p4tLlVs9V9XqyddC9KnjIHh0VnzCwed_gapTP1dFGk_1dy0XUajnUfpuEE1QsBy19iidMD44tKewUjAdAQ1n92ZCifQq5wVc1saF0ExWCWQbWC-K0PyiiLMPLtDuH19r0xChqvt-_EDGFCHzUeKQYUW8w5uShHFnksRiw3Lx_NO-LMN5_K6VuobvQB_-11HzsS26AYWu4KpkbhaWdJ3qhr-F8RXV3oU2xWWKwKm7ifYCJIhjqVi51mQh2M8T5vgfqi1bAUgaxLKg"
+    },
+    "error": null
+}
+
+```
+
+### 💸 Login Curl
+
+```js
+curl --location 'localhost:4040/v1/auth/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "test@gmail.com",
+    "password": "admin123"
+}'
+```
+
+### 💸 Login Response
+
+```js
+{
+    "success": true,
+    "code": 2400,
+    "data": {
+        "id": 1,
+        "name": "testing",
+        "email": "test@gmail.com",
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic2VjIjoiZDQxZDhjZDk4ZjAwYjIwNGU5ODAwOTk4ZWNmODQyN2UiLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InRlc3RAZ21haWwuY29tIn0.CRUK403DMvcqEgNp2_b2oAT4GjnHZm-u1obQfZjMnIW5UnjLmqJzuZnC1tmiRTIxCPCk4mbXjZcYTG11IjDIWhH7s8ND1erp--w1YQ-HYSZhXJwKd6EOBFS1Qg-Ti-UvZPXB8Ya96zduwOX6VlefsuPoqu5RoljBhns9vahUMlofoCEoYej671vlYelUOm2eO1ANVcDnPdnAivAtiuphV11rqtfaFIGh7snmmAaT-IHqTQDvm8Z7b_3jpJXE-Xt8hAqhJUlep05Tvqqrd2fYfJy_P_EEMUVd1C94i-IU-vbYfuvPkdkuAanB9lO-ZqnQXk0okvtR5TCe-9l8KswJxw"
+    },
+    "error": null
+}
+```
+
+### 💸 Curl Schedule List
+
+```js
+curl --location --request GET 'localhost:4040/v1/schedule/list' \
 --header 'Authorization: Bearer your token' \
+--header 'Content-Type: application/json' \
 --data '{
     "draw": 0,
-    "search": "test",
-    "length": 3,
+    "search": "2", //for cinema_id or movie_id
+    "length": 10,
     "offset": 0
 }'
 ```
 
-### 💸 List Product Datatable Response
+### 💸 List Schedule Datatable Response
 
 ```js
 {
     "draw": 1,
-    "recordsTotal": 1,
-    "filteredTotal": 1,
+    "recordsTotal": 2,
+    "filteredTotal": 2,
     "data": [
         {
             "id": 1,
-            "name": "test Update 123",
-            "description": "test",
-            "price": 0
+            "cinema_id": 12,
+            "movie_id": 2,
+            "show_date": "2025-10-21T07:00:00+07:00",
+            "start_time": "19:00",
+            "end_time": "21:00",
+            "created_at": "2025-10-21T10:28:21.63434+07:00",
+            "updated_at": "2025-10-21T10:41:30.918438+07:00"
+        },
+        {
+            "id": 2,
+            "cinema_id": 20,
+            "movie_id": 2,
+            "show_date": "2025-10-21T07:00:00+07:00",
+            "start_time": "19:00",
+            "end_time": "21:00",
+            "created_at": "2025-10-21T10:39:26.316268+07:00",
+            "updated_at": "2025-10-21T10:41:45.26702+07:00"
         }
     ]
 }
 ```
 
-### 💸 Create Product Request
+### 💸 Curl Create Schedule
 
 ```js
-curl --location 'localhost:4040/v1/product/create' \
---header 'Content-Type: application/json' \
+curl --location 'localhost:4040/v1/schedule/create' \
 --header 'Authorization: Bearer your token' \
+--header 'Content-Type: application/json' \
 --data '{
-	"name": "test PROD",
-    "description": "1",
-    "price": 1000
+    "cinema_id": 12,
+    "movie_id": 2,
+    "show_date": "2025-10-21 00:00:00",
+    "start_time": "19:00",
+    "end_time": "21:00"
 }'
 ```
 
-### 💸 Create Product Response
+### 💸 Create Schedule Response
 
 ```js
 {
     "success": true,
     "code": 2400,
-    "data": "Product [test] successfully created",
+    "data": "Data Schedule successfully created",
     "error": null
 }
 ```
 
-### 💸 Update Product Request
+### 💸 Curl Update Schedule
 
 ```js
-curl --location --request PUT 'localhost:4040/v1/product/update/1' \
---header 'Content-Type: application/json' \
+curl --location --request PUT 'localhost:4040/v1/schedule/update/2' \
 --header 'Authorization: Bearer your token' \
+--header 'Content-Type: application/json' \
 --data '{
-	"name": "test PROD",
-    "description": "1",
-    "price": 1000
+    "cinema_id": 20,
+    "movie_id": 2,
+    "show_date": "2025-10-21 00:00:00",
+    "start_time": "19:00",
+    "end_time": "21:00"
 }'
 ```
 
-### 💸 Update Product Response
+### 💸 Update Schedule Response
 
 ```js
 {
     "success": true,
     "code": 2400,
-    "data": "Data product successfully updated",
+    "data": "Data Schedule successfully updated",
     "error": null
 }
 ```
 
-### 💸 Delete Product Request
+### 💸 Curl Delete Schedule
 
 ```js
-curl --location --request DELETE 'localhost:4040/v1/product/delete/10' \
+curl --location --request DELETE 'localhost:4040/v1/schedule/delete/2' \
 --header 'Authorization: Bearer your token' \
 ```
 
-### 💸 Delete Product Response
+### 💸 Delete Schedule Response
 
 ```js
 {
     "success": true,
     "code": 2400,
-    "data": "product ID [10] successfully deleted",
+    "data": "Data Schedule successfully deleted",
     "error": null
 }
 ```
 
-### 💸 Add to Cart Request
+### 📖 Excersise Point A.2
 
 ```js
-curl --location 'localhost:4040/v1/cart/create' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer your token' \
---data '{
-    "product_id": 1
-}'
-```
+    1. Proses Pemilihan Tempat Duduk
+        Tahap 1 – Load Denah Tempat Duduk
+            1. Client membuka halaman pemilihan kursi.
+            2. Sistem memuat denah (seats + seat_statuses dari schedule_id).
+            3. Untuk performa:
+                - Gunakan cache Redis dengan key seatmap:schedule_id.
+                - Cache disinkronkan setiap update seat status.
 
-### 💸 Add to Cart Response
+        Tahap 2 – User Memilih Kursi (Hold)
+            1 Saat user memilih kursi dan seatnya akan dilock menggunakan mutex lock untuk mencegah race condition dan sistem akan:
+                - Mengecek seat_statuses.status = AVAILABLE.
+                - Membuat hold sementara (status → HELD, isi hold_user_id, hold_expires_at).
+            2. Jika berhasil → kursi dikunci 10 menit.
+            3. Worker background memantau kursi yang hold_expires_at < NOW() untuk di-release.
 
-```js
-{
-    "success": true,
-    "code": 2400,
-    "data": "Item Added to Cart!",
-    "error": null
-}
-```
 
-### 💸 Create Order Request
+        Tahap 3 – Pembayaran & Issued Ticket
+            1. Setelah user klik Bayar, sistem membuat record di payments dengan status = PENDING.
+            2. Setelah payment gateway callback sukses:
+                - Update payments.status = SUCCESS.
+                - Ubah seat_statuses.status = 'SOLD'.
+                - mutex lock auto unlocked
 
-```js
-curl --location --request POST 'localhost:4040/v1/order/create' \
---header 'Authorization: Bearer your token' \
---data ''
-```
+    2. Refund / Pembatalan oleh Bioskop
+        Kasus A — Refund karena Pembatalan Film (schedules.status = CANCELED)
+            1. Admin mengubah schedules.status → CANCELED.
+            2. Worker mendeteksi perubahan ini dan:
+                - Menemukan semua tickets dengan status = ISSUED.
+                - Membuat entry di refunds (status = PENDING).
+                - Setelah dana dikembalikan → refunds.status = SUCCESS, tickets.status = REFUNDED, payments.status = REFUNDED.
 
-### 💸 Create Order Response
+        Kasus B — Refund Individual (User Request)
+            1. User meminta refund → buat record refunds (status=PENDING).
+            2. Setelah divalidasi admin:
+                - Update refunds.status = SUCCESS, tickets.status = REFUNDED, payments.status = REFUNDED.
+                - seat_statuses.status → AVAILABLE → kursi dapat dibeli kembali.
 
-```js
-{
-    "success": true,
-    "code": 2400,
-    "data": "Thank you, Your order successfully!",
-    "error": null
-}
-```
-
-### 📖 Excersise 2
-
-```js
-## Fetch a user by username.
-    - we need do index with composite:username_created_at_key
-
-## Fetch users who signed up after a certain date (created_at > "2023-01-01").
-    - we need do only individual index on coloum created_at
-
-## Fetch a user by email.
-    - we need do index with composite:email_created_at_key
-
-```
-
-### 📖 Excersise 4
-
-```js
-    - sory for my answer is not giving the function only describing the logic, cause the time is limit, sorry for the inconvenience,
-    if depisit and withdarw function running using concurrent we need handle race condition using sync.Mutex
-
-```
-
-### 📖 Excersise 4
-
-```js
-## Write an optimized SQL query to find the top 5 customers who spent the most money in the past month.
-    SELECT
-        o.customer_id,
-        SUM(o.amount) AS total_spent
-    FROM
-        orders o
-    WHERE
-        o.order_date >= NOW() - INTERVAL 1 MONTH  -- filter orders from the last month
-    GROUP BY
-        o.customer_id
-    ORDER BY
-        total_spent DESC
-    LIMIT 5;
-
-## How would you improve the performance of this query in a production environment?
-    - we need do index on order_date
-
-```
-
-### 📖 Excersise 5
-
-```js
-## What steps would you take to decompose the service into smaller, more manageable services?
-    - we do decompose to be user service and management service (for all file)
-
-## How would you ensure that the new system is backward compatible with the old one during the transition?
-    - before going to production we need make sure running well on staging enviroment, if all good, we can go to production
-
+    3. Restock Tiket / Kursi
+        Tiket bisa restock dalam dua kondisi:
+            - Hold expired → kursi otomatis AVAILABLE.
+            - Refund berhasil → kursi AVAILABLE.
+                Worker task (tiap 1 menit):
 ```

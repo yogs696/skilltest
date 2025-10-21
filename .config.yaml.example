@@ -1,12 +1,12 @@
 app:
-  name: testcase
-  desc: Services of testcase
+  name: skilltest
+  desc: Services of skilltest
   port: 4040
   env: development
   prefork: false
   timeZone: Asia/Jakarta
   auwi: 3
-  programFile: /usr/sbin/techtest
+  programFile: /usr/sbin/skilltest
   workingDir: your directory project
 
 database: 

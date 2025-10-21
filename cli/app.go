@@ -21,21 +21,19 @@ var appCommands = cli{
 
 const (
 	// Year and copyright
-	yc     = "(c) %v techtest"
+	yc     = "(c) %v skilltest"
 	banner = `
-                _                         
- _             | |    _              _    
-| |_  ____ ____| | _ | |_  ____  ___| |_  
-|  _)/ _  ) ___) || \|  _)/ _  )/___)  _) 
-| |_( (/ ( (___| | | | |_( (/ /|___ | |__ 
- \___)____)____)_| |_|\___)____|___/ \___)
-                                          
+       _     _ _ _                        
+     | |   (_) | |   _              _    
+  ___| |  _ _| | |  | |_  ____  ___| |_  
+ /___) | / ) | | |  |  _)/ _  )/___)  _) 
+|___ | |< (| | | |  | |_( (/ /|___ | |__ 
+(___/|_| \_)_|_|_|   \___)____|___/ \___)
   %s %s`
 )
 
 func printInfo() {
 	// App name
-	// s, _ := pterm.DefaultBigText.WithLetters(pterm.NewLettersFromString(config.Of.App.Name)).Srender()
 	pyc := fmt.Sprintf(yc, time.Now().Year())
 	header := fmt.Sprintf(pterm.LightGreen(banner), pterm.Red(app.Version), pterm.LightGreen(pyc))
 	pterm.DefaultCenter.Println(header)

@@ -121,9 +121,12 @@ func (prd *ScheduleRepoDB) Delete(scheduleID uint) (row int64, err error) {
 	tx := prd.db.Delete(&entity.Schedule{}, scheduleID)
 	row = tx.RowsAffected
 	err = tx.Error
-	switch {
-	case strings.Contains(err.Error(), "SQLSTATE 23503"):
-		err = fmt.Errorf("schedule id [%v] cannot be deleted", scheduleID)
+	fmt.Println("err delete schedule repo:", err)
+
+	if err != nil {
+		if strings.Contains(err.Error(), "SQLSTATE 23503") {
+			err = fmt.Errorf("schedule id [%v] cannot be deleted", scheduleID)
+		}
 	}
 	return
 }
